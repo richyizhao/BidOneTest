@@ -1,0 +1,19 @@
+:host {
+  display: block;
+  width: min(100%, 520px);
+  margin-inline: auto;
+}
+
+.notfound {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 20px 50px rgba(15, 20, 40, 0.10);
+  text-align: center;
+}
+
+h1 {
+  color: #0f172a;
+  font-size: 32px;
+}

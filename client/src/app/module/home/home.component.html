@@ -1,0 +1,73 @@
+<div class="card">
+  <h1>User Info</h1>
+
+  <form class="name-form" (ngSubmit)="submitForm()" #userForm="ngForm">
+    <label for="firstName">First name</label>
+    <input
+      id="firstName"
+      name="firstName"
+      type="text"
+      autocomplete="given-name"
+      [(ngModel)]="firstName"
+      placeholder="Enter first name"
+      required
+      maxlength="50"
+      [pattern]="namePattern"
+      #firstNameModel="ngModel"
+    />
+    @if (firstNameModel.invalid && (firstNameModel.touched || userForm.submitted)) {
+      <p class="field-error">
+        @if (firstNameModel.errors?.['required']) {
+          <span>First name is required.</span>
+        } @else if (firstNameModel.errors?.['maxlength']) {
+          <span>First name must be 50 characters or fewer.</span>
+        } @else if (firstNameModel.errors?.['pattern']) {
+          <span>First name may contain letters, hyphens, apostrophes, and spaces only.</span>
+        }
+      </p>
+    }
+
+    <label for="lastName">Last name</label>
+    <input
+      id="lastName"
+      name="lastName"
+      type="text"
+      autocomplete="family-name"
+      [(ngModel)]="lastName"
+      placeholder="Enter last name"
+      required
+      maxlength="50"
+      [pattern]="namePattern"
+      #lastNameModel="ngModel"
+    />
+    @if (lastNameModel.invalid && (lastNameModel.touched || userForm.submitted)) {
+      <p class="field-error">
+        @if (lastNameModel.errors?.['required']) {
+          <span>Last name is required.</span>
+        } @else if (lastNameModel.errors?.['maxlength']) {
+          <span>Last name must be 50 characters or fewer.</span>
+        } @else if (lastNameModel.errors?.['pattern']) {
+          <span>Last name may contain letters, hyphens, apostrophes, and spaces only.</span>
+        }
+      </p>
+    }
+
+    <button type="submit" [disabled]="userForm.invalid">Submit</button>
+  </form>
+
+  @if (saveMessage() && submittedFullName()) {
+    <div class="result">
+      <span>Logged user</span>
+      <strong>{{ submittedFullName() }}</strong>
+    </div>
+  }
+
+  @if (saveMessage()) {
+    <p class="status success">{{ saveMessage() }}</p>
+  }
+
+  @if (saveError()) {
+    <p class="status error">{{ saveError() }}</p>
+  }
+</div>
+

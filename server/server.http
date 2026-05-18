@@ -1,0 +1,41 @@
+@server_HostAddress = https://localhost:7072
+
+### Create user - success
+POST {{server_HostAddress}}/api/User
+Accept: application/json
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Smith"
+}
+
+### Create user - error - name field empty
+POST {{server_HostAddress}}/api/User
+Accept: application/json
+Content-Type: application/json
+
+{
+  "firstName": "",
+  "lastName": "Smith"
+}
+
+### Create user - error - name char exceeds max length
+POST {{server_HostAddress}}/api/User
+Accept: application/json
+Content-Type: application/json
+
+{
+  "firstName": "John1asdasdasdasdasdasdasdasdasdasdasdasdasdasasdasd",
+  "lastName": "Smith"
+}
+
+### Create user - error - number in name
+POST {{server_HostAddress}}/api/User
+Accept: application/json
+Content-Type: application/json
+
+{
+  "firstName": "John1",
+  "lastName": "Smith"
+}
