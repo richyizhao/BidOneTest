@@ -7,20 +7,18 @@
       id="firstName"
       name="firstName"
       type="text"
-      autocomplete="given-name"
-      [(ngModel)]="firstName"
       placeholder="Enter first name"
+      autocomplete="given-name"
       required
-      maxlength="50"
+      maxlength="20"
       [pattern]="namePattern"
+      [(ngModel)]="firstName"
       #firstNameModel="ngModel"
     />
     @if (firstNameModel.invalid && (firstNameModel.touched || userForm.submitted)) {
       <p class="field-error">
         @if (firstNameModel.errors?.['required']) {
           <span>First name is required.</span>
-        } @else if (firstNameModel.errors?.['maxlength']) {
-          <span>First name must be 50 characters or fewer.</span>
         } @else if (firstNameModel.errors?.['pattern']) {
           <span>First name may contain letters, hyphens, apostrophes, and spaces only.</span>
         }
@@ -32,20 +30,18 @@
       id="lastName"
       name="lastName"
       type="text"
-      autocomplete="family-name"
-      [(ngModel)]="lastName"
       placeholder="Enter last name"
+      autocomplete="family-name"
       required
-      maxlength="50"
+      maxlength="20"
       [pattern]="namePattern"
+      [(ngModel)]="lastName"
       #lastNameModel="ngModel"
     />
     @if (lastNameModel.invalid && (lastNameModel.touched || userForm.submitted)) {
       <p class="field-error">
         @if (lastNameModel.errors?.['required']) {
           <span>Last name is required.</span>
-        } @else if (lastNameModel.errors?.['maxlength']) {
-          <span>Last name must be 50 characters or fewer.</span>
         } @else if (lastNameModel.errors?.['pattern']) {
           <span>Last name may contain letters, hyphens, apostrophes, and spaces only.</span>
         }

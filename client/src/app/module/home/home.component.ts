@@ -30,7 +30,6 @@ export class HomeComponent {
 
     }).subscribe({
       next: (response) => {
-        console.log('API response:', response);
         this.submittedFullName.set(`${response.data.firstName} ${response.data.lastName}`);
         this.saveMessage.set(response.message);
       },

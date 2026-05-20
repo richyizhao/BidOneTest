@@ -12,10 +12,6 @@ export class UserService {
   private readonly http = inject(HttpClient);
   private readonly apiUrl = `${environment.apiURL}/api/user`;
 
-  public get(): Observable<unknown> {
-    return this.http.get(this.apiUrl);
-  }
-
   public create(user: User): Observable<UserCreatedResponse> {
     return this.http.post<UserCreatedResponse>(this.apiUrl, user);
   }

@@ -20,17 +20,17 @@ Content-Type: application/json
   "lastName": "Smith"
 }
 
-### Create user - error - name char exceeds max length
+### Create user - error - name char exceeds max length 20
 POST {{server_HostAddress}}/api/User
 Accept: application/json
 Content-Type: application/json
 
 {
-  "firstName": "John1asdasdasdasdasdasdasdasdasdasdasdasdasdasasdasd",
+  "firstName": "Johnasdasdasdasdasdas",
   "lastName": "Smith"
 }
 
-### Create user - error - number in name
+### Create user - error - non letter in name
 POST {{server_HostAddress}}/api/User
 Accept: application/json
 Content-Type: application/json

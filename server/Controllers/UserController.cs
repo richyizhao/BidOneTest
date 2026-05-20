@@ -52,9 +52,9 @@ namespace server.Controllers
                 return "First and last name are required.";
             }
 
-            if (firstName.Length > 50 || lastName.Length > 50)
+            if (firstName.Length > 20 || lastName.Length > 20)
             {
-                return "First and last name must be 50 characters or fewer.";
+                return "First and last name must be 20 characters or fewer.";
             }
 
             if (!IsValidName(firstName) || !IsValidName(lastName))
