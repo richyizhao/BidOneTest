@@ -3,12 +3,12 @@ export interface User {
   lastName: string;
 }
 
-export interface UserCreatedDto {
+export interface UserResponseDto {
   firstName: string;
   lastName: string;
 }
 
 export interface UserCreatedResponse {
   message: string;
-  data: UserCreatedDto;
+  data: UserResponseDto;
 }

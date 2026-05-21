@@ -20,6 +20,16 @@ Content-Type: application/json
   "lastName": "Smith"
 }
 
+### Create user - error - name char below min length 2
+POST {{server_HostAddress}}/api/User
+Accept: application/json
+Content-Type: application/json
+
+{
+  "firstName": "J ",
+  "lastName": "Smith"
+}
+
 ### Create user - error - name char exceeds max length 20
 POST {{server_HostAddress}}/api/User
 Accept: application/json

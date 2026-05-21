@@ -1,6 +1,6 @@
 namespace server.Dtos
 {
-    public class UserCreateDto
+    public class UserResponseDto
     {
         public string FirstName { get; set; } = string.Empty;
 

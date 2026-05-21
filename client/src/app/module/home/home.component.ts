@@ -14,7 +14,7 @@ import { UserService } from '../../shared/services/user.service';
 export class HomeComponent {
   firstName = '';
   lastName = '';
-  readonly namePattern = "^[A-Za-z' \\-]+$";
+  readonly namePattern = "^[A-Za-z'\\-]+$";
   readonly submittedFullName = signal('');
   readonly saveMessage = signal('');
   readonly saveError = signal('');
@@ -24,24 +24,42 @@ export class HomeComponent {
     this.saveMessage.set('');
     this.saveError.set('');
 
-    this.userService.create({
-      firstName: this.firstName,
-      lastName: this.lastName
+    this.userService
+      .create({
+        firstName: this.firstName,
+        lastName: this.lastName,
+      })
+      .subscribe({
+        next: (response) => {
+          this.submittedFullName.set(`${response.data.firstName} ${response.data.lastName}`);
+          this.saveMessage.set(response.message);
+        },
 
-    }).subscribe({
-      next: (response) => {
-        this.submittedFullName.set(`${response.data.firstName} ${response.data.lastName}`);
-        this.saveMessage.set(response.message);
-      },
+        error: (error: HttpErrorResponse) => {
+          const apiError = this.apiErrorMessage(error);
 
-      error: (error: HttpErrorResponse) => {
-        const apiError = typeof error.error === 'string'
-          ? error.error
-          : 'Unable to save user info. Check that the API is running.';
+          this.submittedFullName.set('');
+          this.saveError.set(apiError);
+        },
+      });
+  }
 
-        this.submittedFullName.set('');
-        this.saveError.set(apiError);
+  private apiErrorMessage(error: HttpErrorResponse): string {
+    if (typeof error.error === 'string') {
+      return error.error;
+    }
+
+    const validationErrors = error.error?.errors;
+    if (validationErrors && typeof validationErrors === 'object') {
+      const messages = Object.values(validationErrors)
+        .flat()
+        .filter((message): message is string => typeof message === 'string');
+
+      if (messages.length > 0) {
+        return messages[0];
       }
-    });
+    }
+
+    return 'Unable to save user info. Check that the API is running.';
   }
 }

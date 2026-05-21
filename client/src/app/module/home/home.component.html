@@ -10,6 +10,7 @@
       placeholder="Enter first name"
       autocomplete="given-name"
       required
+      minlength="2"
       maxlength="20"
       [pattern]="namePattern"
       [(ngModel)]="firstName"
@@ -19,8 +20,10 @@
       <p class="field-error">
         @if (firstNameModel.errors?.['required']) {
           <span>First name is required.</span>
+        } @else if (firstNameModel.errors?.['minlength']) {
+          <span>First name must contain at least 2 letters.</span>
         } @else if (firstNameModel.errors?.['pattern']) {
-          <span>First name may contain letters, hyphens, apostrophes, and spaces only.</span>
+          <span>First name may contain letters, hyphens, and apostrophes only.</span>
         }
       </p>
     }
@@ -33,6 +36,7 @@
       placeholder="Enter last name"
       autocomplete="family-name"
       required
+      minlength="2"
       maxlength="20"
       [pattern]="namePattern"
       [(ngModel)]="lastName"
@@ -42,8 +46,10 @@
       <p class="field-error">
         @if (lastNameModel.errors?.['required']) {
           <span>Last name is required.</span>
+        } @else if (lastNameModel.errors?.['minlength']) {
+          <span>Last name must contain at least 2 letters.</span>
         } @else if (lastNameModel.errors?.['pattern']) {
-          <span>Last name may contain letters, hyphens, apostrophes, and spaces only.</span>
+          <span>Last name may contain letters, hyphens, and apostrophes only.</span>
         }
       </p>
     }
@@ -66,4 +72,3 @@
     <p class="status error">{{ saveError() }}</p>
   }
 </div>
-
