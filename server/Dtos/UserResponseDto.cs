@@ -1,4 +1,4 @@
-namespace server.Dtos
+namespace server.DTOs
 {
     public class UserResponseDto
     {

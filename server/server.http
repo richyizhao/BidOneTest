@@ -1,7 +1,7 @@
 @server_HostAddress = https://localhost:7072
 
 ### Create user - success
-POST {{server_HostAddress}}/api/User
+POST {{server_HostAddress}}/api/user
 Accept: application/json
 Content-Type: application/json
 
@@ -11,7 +11,7 @@ Content-Type: application/json
 }
 
 ### Create user - error - name field empty
-POST {{server_HostAddress}}/api/User
+POST {{server_HostAddress}}/api/user
 Accept: application/json
 Content-Type: application/json
 
@@ -21,17 +21,17 @@ Content-Type: application/json
 }
 
 ### Create user - error - name char below min length 2
-POST {{server_HostAddress}}/api/User
+POST {{server_HostAddress}}/api/user
 Accept: application/json
 Content-Type: application/json
 
 {
-  "firstName": "J ",
+  "firstName": "J",
   "lastName": "Smith"
 }
 
 ### Create user - error - name char exceeds max length 20
-POST {{server_HostAddress}}/api/User
+POST {{server_HostAddress}}/api/user
 Accept: application/json
 Content-Type: application/json
 
@@ -41,7 +41,7 @@ Content-Type: application/json
 }
 
 ### Create user - error - non letter in name
-POST {{server_HostAddress}}/api/User
+POST {{server_HostAddress}}/api/user
 Accept: application/json
 Content-Type: application/json
 

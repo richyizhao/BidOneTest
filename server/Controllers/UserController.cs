@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using server.Data;
-using server.Dtos;
+using server.DTOs;
 using server.Models;
 
 namespace server.Controllers
@@ -11,7 +11,7 @@ namespace server.Controllers
     {
         private readonly IRepo _Repo = Repo;
 
-        [HttpPost(Name = "PostUser")]
+        [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateUserRequestDto request)
         {
             var firstName = NormalizeName(request.FirstName);
